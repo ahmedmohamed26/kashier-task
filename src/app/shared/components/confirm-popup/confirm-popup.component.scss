@@ -1,0 +1,47 @@
+@import '../../../../assets/styles/variables.scss';
+
+.confirm-popup {
+    width: 100vw;
+    height: 100vh;
+    background: #00000033;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    .parent {
+        background: #fff;
+        padding: 15px;
+        width: 50vw;
+
+        .header {
+            h6 {
+                font-size: $Size16;
+                color: $second-color;
+                font-weight: bold;
+            }
+
+            i {
+                color: $grayColor;
+                font-size: $Size12;
+                cursor: pointer;
+            }
+        }
+
+        p {
+            color: $grayColor;
+            font-size: $Size14;
+        }
+    }
+}
+
+
+@media only screen and (max-width:768px) {
+    .confirm-popup {
+        .parent {
+            width: calc(100vw - 50px) !important;
+        }
+    }
+}

@@ -1,0 +1,34 @@
+@import '../../../../assets/styles/variables.scss';
+
+.toastr {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #fff;
+    border-radius: 5px;
+    padding: 15px;
+    width: 25vw;
+    box-shadow: $shadow;
+
+    .toastr-msg {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        i {
+            font-size: $Size12;
+            cursor: pointer;
+            color: $grayColor;
+        }
+    }
+}
+
+
+@media only screen and (max-width:768px) {
+    .toastr {
+        width: calc(100vw - 30px) !important;
+        top: inherit !important;
+        bottom: 20px !important;
+    }
+}

@@ -1,0 +1,59 @@
+<section class="products">
+  <div class="col-md-6 col-12">
+    <div class="dropdown-list" (click)="showDrobDown()">
+      <span>{{
+        selectProductObj.name
+          ? selectProductObj.name
+          : "select or add new product"
+      }}</span>
+      <i class="icon-chevron-down"></i>
+    </div>
+
+    <div class="list-products" *ngIf="showDrobDownList">
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="Search products"
+          [(ngModel)]="productsFilter"
+        />
+        <i class="icon-search"></i>
+      </div>
+      <div class="add-new-product" (click)="selectNewEditProduct({}, true)">
+        <h6><i class="icon-plus"></i>Add new product</h6>
+      </div>
+      <ng-container *ngIf="products.length">
+        <ul>
+          <li
+            *ngFor="let product of products | productsFilter: productsFilter"
+            (click)="selectNewEditProduct(product, false)"
+          >
+            {{ product?.name }}
+          </li>
+        </ul>
+      </ng-container>
+      <ng-container *ngIf="!products.length">
+        <p class="text-center pt-3 pb-3">Not Found</p>
+      </ng-container>
+    </div>
+
+    <ng-container *ngIf="showProductForm">
+      <app-product-form
+        [selectedProduct]="selectProductObj"
+        (addEditProduct)="showSaveConfirmPopup($event)"
+        (cancelAddEditProduct)="cancelAddEditProduct()"
+        (deleteProductEmit)="showDeleteConfirmPopup($event)"
+      ></app-product-form>
+    </ng-container>
+    <ng-container *ngIf="showToastr">
+      <app-toastr [toastrMessage]="toastrMessage"></app-toastr>
+    </ng-container>
+    <ng-container *ngIf="showPopup">
+      <app-confirm-popup
+        [product]="product"
+        (closePopupEmitter)="closePopup()"
+        (saveProductEmitter)="saveProduct($event)"
+        (deleteProductEmitter)="deleteProduct($event)"
+      ></app-confirm-popup>
+    </ng-container>
+  </div>
+</section>

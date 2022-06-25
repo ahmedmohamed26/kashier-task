@@ -1,0 +1,35 @@
+@import '../../../../assets/styles/variables.scss';
+
+.product-form {
+    form {
+
+        padding: 15px 0;
+
+        .form-group {
+            position: relative;
+
+            label {
+                font-size: $Size16;
+                color: $second-color;
+                text-transform: capitalize;
+
+                span {
+                    font-size: $Size12;
+                    color: $grayColor;
+                }
+            }
+
+            .form-control {}
+
+            i {
+                position: absolute;
+                right: 7px;
+                top: 41px;
+                color: $second-color;
+                cursor: pointer;
+            }
+        }
+
+
+    }
+}

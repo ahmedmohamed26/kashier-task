@@ -1,0 +1,28 @@
+    .btn {
+        text-transform: capitalize;
+        font-size: $Size15;
+
+        &:focus {
+            outline: none;
+            box-shadow: none;
+        }
+    }
+
+    .save {
+        background-color: $main-color;
+        color: #fff;
+    }
+
+    .delete {
+        background-color: $dangerColor;
+        color: #fff;
+
+    }
+
+    .cancel {
+        color: $grayColor;
+    }
+
+    .delete-text {
+        color: $dangerColor;
+    }

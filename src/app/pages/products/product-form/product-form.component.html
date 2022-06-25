@@ -1,0 +1,222 @@
+<section class="product-form">
+  <form [formGroup]="productForm" (ngSubmit)="addUpdateProduct()">
+    <div class="row">
+      <div class="col-md-12 col-12">
+        <div class="form-group">
+          <label for="name">Product Name</label>
+          <input
+            class="form-control"
+            type="text"
+            placeholder="Product Name"
+            formControlName="name"
+          />
+          <div
+            *ngIf="
+              (productForm.get('name')?.invalid &&
+                productForm.get('name')?.touched) ||
+              (productForm.get('name')?.untouched && isSubmitted)
+            "
+          >
+            <small
+              *ngIf="productForm.controls['name']?.errors?.['required']"
+              class="form-text text-muted alert alert-danger"
+            >
+              Product Name is required
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-12">
+        <label for="type">Product Type</label>
+        <div class="form-group">
+          <div
+            class="form-check form-check-inline"
+            *ngFor="let type of productTypes"
+          >
+            <input
+              class="form-check-input"
+              type="radio"
+              [id]="type.value"
+              formControlName="productType"
+              [value]="type.value"
+              [placeholder]="type.name"
+            />
+            <label class="form-check-label" for="inlineRadio1">{{
+              type.name
+            }}</label>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-12">
+        <div class="form-group">
+          <label for="product-category">product category</label>
+          <input
+            type="text"
+            placeholder="category"
+            formControlName="productCategory"
+            class="form-control"
+          />
+
+          <div
+            *ngIf="
+              (productForm.get('productCategory')?.invalid &&
+                productForm.get('productCategory')?.touched) ||
+              (productForm.get('productCategory')?.untouched && isSubmitted)
+            "
+          >
+            <small
+              *ngIf="productForm.controls['productCategory']?.errors?.['required']"
+              class="form-text text-muted alert alert-danger"
+            >
+              Product Category is required
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-12 mb-3">
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            formControlName="subCategory"
+          />
+          <label class="form-check-label" for="sub-category">
+            This is a sub-category</label
+          >
+        </div>
+      </div>
+
+      <div class="col-md-6 col-12">
+        <div class="form-group">
+          <label for="reference">reference id <span>(optional)</span></label>
+          <input
+            class="form-control"
+            type="text"
+            placeholder="ID"
+            formControlName="referenceId"
+          />
+        </div>
+      </div>
+      <div class="col-md-6 col-12">
+        <div class="form-group">
+          <label for="password">password</label>
+          <input
+            class="form-control"
+            type="{{ showPassWord ? 'text' : 'password' }}"
+            placeholder="Password"
+            formControlName="password"
+          />
+          <i
+            [ngClass]="showPassWord ? 'icon-eye-off' : 'icon-eye'"
+            (click)="showPass()"
+          ></i>
+          <div
+            *ngIf="
+              (productForm.get('password')?.invalid &&
+                productForm.get('password')?.touched) ||
+              (productForm.get('password')?.untouched && isSubmitted)
+            "
+          >
+            <small
+              *ngIf="productForm.controls['password']?.errors?.['required']"
+              class="form-text text-muted alert alert-danger"
+            >
+              Password is required
+            </small>
+            <small
+              *ngIf="productForm.controls['password']?.errors?.['minlength'] || productForm.controls['password']?.errors?.['maxlength']"
+              class="form-text text-muted alert alert-danger"
+            >
+              Password must be 8 numbers.
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-12">
+        <label for="delivery-fees">delivery fees</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">EGP</span>
+          </div>
+          <input
+            type="number"
+            class="form-control"
+            placeholder="delivery fees"
+            formControlName="deliveryFeesPrice"
+          />
+          <div
+            *ngIf="
+              (productForm.get('deliveryFeesPrice')?.invalid &&
+                productForm.get('deliveryFeesPrice')?.touched) ||
+              (productForm.get('deliveryFeesPrice')?.untouched && isSubmitted)
+            "
+          >
+            <small
+              *ngIf="productForm.controls['deliveryFeesPrice']?.errors?.['required']"
+              class="form-text text-muted alert alert-danger"
+            >
+              Delivery fees is required
+            </small>
+            <small
+              *ngIf="productForm.controls['deliveryFeesPrice']?.errors?.['min'] || productForm.controls['deliveryFeesPrice']?.errors?.['max']"
+              class="form-text text-muted alert alert-danger"
+            >
+              Minimum delivery fees 0$ or Maximum delivery fees 10000$
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-12">
+        <label for="delivery-fees">delivery fees</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">%</span>
+          </div>
+          <input
+            type="number"
+            class="form-control"
+            placeholder="delivery fees"
+            formControlName="deliveryFeesPercentage"
+          />
+          <div
+            *ngIf="
+              (productForm.get('deliveryFeesPercentage')?.invalid &&
+                productForm.get('deliveryFeesPercentage')?.touched) ||
+              (productForm.get('deliveryFeesPercentage')?.untouched &&
+                isSubmitted)
+            "
+          >
+            <small
+              *ngIf="productForm.controls['deliveryFeesPercentage']?.errors?.['required']"
+              class="form-text text-muted alert alert-danger"
+            >
+              Delivery fees is required
+            </small>
+            <small
+              *ngIf="productForm.controls['deliveryFeesPercentage']?.errors?.['min'] || productForm.controls['deliveryFeesPercentage']?.errors?.['max']"
+              class="form-text text-muted alert alert-danger"
+            >
+              Minimum delivery fees 0% or Maximum delivery fees 99%
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-6 mt-3">
+        <button
+          *ngIf="selectedProduct.id !== 0"
+          class="btn delete-text"
+          (click)="deleteProduct()"
+          type="submit"
+        >
+          delete
+        </button>
+      </div>
+      <div class="col-md-6 col-6 mt-3 d-flex justify-content-end">
+        <button class="btn cancel" (click)="cancelProduct()" type="submit">
+          cancel
+        </button>
+        <button class="btn save">save</button>
+      </div>
+    </div>
+  </form>
+</section>

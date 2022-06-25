@@ -1,0 +1,21 @@
+@import "assets/styles/shared";
+
+body {
+    background-color: #f6f7fb;
+    font-family: 'poppins-regular';
+}
+
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f3f3f3;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: $grayColor;
+    border-radius: 5px;
+}

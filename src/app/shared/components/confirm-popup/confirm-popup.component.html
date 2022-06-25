@@ -1,0 +1,40 @@
+<section class="confirm-popup">
+  <div class="parent">
+    <div class="header d-flex justify-content-between">
+      <h6>
+        {{
+          productItem?.type === "delete"
+            ? "Delete " + productItem?.productValue?.name + " ?"
+            : "Save changes ?"
+        }}
+      </h6>
+      <i class="icon-cross" (click)="closePopup()"></i>
+    </div>
+    <p>
+      {{
+        productItem?.type === "delete"
+          ? "Are you sure you want to delete product? Once deleted, you won't be able to access it again."
+          : "Are you sure you want to save changes made?"
+      }}
+    </p>
+    <div class="button-group">
+      <div class="col-md-12 mt-3 d-flex justify-content-end">
+        <button class="btn cancel" (click)="closePopup()">Discard</button>
+        <button
+          class="btn save"
+          (click)="saveProduct()"
+          *ngIf="productItem?.type !== 'delete'"
+        >
+          save
+        </button>
+        <button
+          class="btn delete"
+          (click)="deleteProduct()"
+          *ngIf="productItem?.type === 'delete'"
+        >
+          delete
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
