@@ -79,12 +79,10 @@ export class ProductsComponent implements OnInit {
   }
 
   showSaveConfirmPopup(product: any) {
-    this.product = {};
     this.showPopup = true;
     this.product = product;
   }
   showDeleteConfirmPopup(product: any) {
-    this.product = {};
     this.showPopup = true;
     this.product = product;
   }
@@ -93,12 +91,7 @@ export class ProductsComponent implements OnInit {
     this.product.type === 'update'
       ? this.editProduct(this.product)
       : this.addProduct(this.product);
-
-    this.showToastrFun();
-    this.selectProductObj = this.defaultSelectProduct;
-    this.showDrobDownList = false;
-    this.showProductForm = false;
-    this.showPopup = false;
+    this.afterSubmit();
   }
 
   deleteProduct(e: any) {
@@ -106,11 +99,7 @@ export class ProductsComponent implements OnInit {
       (item) => item.id !== this.product.productValue.id
     );
     this.toastrMessage = 'Product delete successfully';
-    this.showToastrFun();
-    this.selectProductObj = this.defaultSelectProduct;
-    this.showDrobDownList = false;
-    this.showProductForm = false;
-    this.showPopup = false;
+    this.afterSubmit();
   }
 
   addProduct(product: any) {
@@ -127,12 +116,16 @@ export class ProductsComponent implements OnInit {
   }
 
   cancelAddEditProduct() {
+    this.toastrMessage = 'Cancel successfully';
+    this.afterSubmit();
+  }
+
+  afterSubmit() {
+    this.showToastrFun();
+    this.selectProductObj = this.defaultSelectProduct;
     this.showDrobDownList = false;
     this.showProductForm = false;
-    this.selectProductObj = this.defaultSelectProduct;
-    this.showToastr = true;
-    this.toastrMessage = 'Cancel successfully';
-    this.showToastrFun();
+    this.showPopup = false;
   }
 
   showToastrFun() {
